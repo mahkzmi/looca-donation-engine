@@ -1,4 +1,3 @@
-
 # 🐾 Looca | Transparent Donation Platform for Animal Shelters
 
 **For Looca. Forever free. For every creature without a voice.**
@@ -68,15 +67,10 @@ python manage.py createsuperuser
 
 # Start development server
 python manage.py runserver
-```
+Then visit http://127.0.0.1:8000/admin and log in.
 
-Then visit `http://127.0.0.1:8000/admin` and log in.
-
----
-
-## 📁 Project Structure
-
-```
+📁 Project Structure
+text
 looca-donation-engine/
 ├── looca/          # Project settings
 ├── shelters/       # Shelter management
@@ -84,52 +78,30 @@ looca-donation-engine/
 ├── payments/       # Transactions & payments
 ├── templates/      # HTML templates
 └── manage.py
-```
+🤝 How to Contribute
+⭐ Star the project
 
----
+🐛 Report bugs
 
-## 🤝 How to Contribute
+💡 Share ideas
 
-1. ⭐ Star the project
-2. 🐛 Report bugs
-3. 💡 Share ideas
-4. 🔧 Submit Pull Requests
-5. 📢 Share the project with shelters
+🔧 Submit Pull Requests
 
----
+📢 Share the project with shelters
 
-## 📜 License
+📜 License
+GNU General Public License v3.0
 
-**GNU General Public License v3.0**
+This project will never become commercial or paid. No one may use Looca's code to build a closed-source or paid product.
 
-This project will **never** become commercial or paid. No one may use Looca's code to build a closed-source or paid product.
-
----
-
-## 💝 Dedicated to
-
-**Looca** – My cat, who reminds me every day that even the smallest act of kindness can change a creature's world.
+💝 Dedicated to
+Looca – My cat, who reminds me every day that even the smallest act of kindness can change a creature's world.
 
 And to every cat and animal still waiting for a second chance.
 
----
-
-## 📬 Contact
-
+📬 Contact
 Built with love by a backend developer for their own heart.
 
-**[GitHub Repository](https://github.com/mahkzmi/looca-donation-engine)**
+GitHub Repository
 
----
-
-<p align="center">
-  <img src="https://img.shields.io/badge/forever-free-brightgreen" alt="forever free">
-  <img src="https://img.shields.io/badge/license-GPLv3-blue" alt="license">
-  <img src="https://img.shields.io/badge/made%20with-%E2%9D%A4%20for%20Looca-red" alt="made with love">
-</p>
-```
-
-
-
-
-Now rest. Day 4 is waiting for you. 🐾
+<p align="center"> <img src="https://img.shields.io/badge/forever-free-brightgreen" alt="forever free"> <img src="https://img.shields.io/badge/license-GPLv3-blue" alt="license"> <img src="https://img.shields.io/badge/made%20with-%E2%9D%A4%20for%20Looca-red" alt="made with love"> </p> ```
