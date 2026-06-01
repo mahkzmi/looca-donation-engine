@@ -3,10 +3,14 @@
 <head>
     <title>{{ campaign.title }} | لوکا</title>
     <style>
-        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; direction: rtl; }
         .progress-bar { background: #eee; border-radius: 10px; height: 20px; }
         .progress-fill { background: green; height: 20px; border-radius: 10px; width: 0%; }
-        button { background: #ff6600; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+        button { background: #ff6600; color: white; padding: 10px 20px; border: none; cursor: pointer; margin-top: 20px; }
+        input, select { padding: 8px; margin: 5px 0; width: 200px; }
+        .donation-form { background: #f9f9f9; padding: 20px; border-radius: 10px; margin-top: 30px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: inline-block; width: 100px; }
     </style>
 </head>
 <body>
@@ -22,7 +26,21 @@
     </div>
     <p>پیشرفت: {{ campaign.progress_percent }}%</p>
     
-    <button onclick="alert('درگاه پرداخت به زودی اضافه می‌شود')">اهدا کن</button>
+    <div class="donation-form">
+        <h3>اهدا به این کمپین</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>مبلغ (تومان):</label>
+                <input type="number" name="amount" min="1000" step="1000" required>
+            </div>
+            <div class="form-group">
+                <label>نام شما (اختیاری):</label>
+                <input type="text" name="donor_name">
+            </div>
+            <button type="submit">اهدا کن</button>
+        </form>
+    </div>
     
     <hr>
     <small>ساخته شده با عشق برای لوکا | همیشه رایگان برای پناهگاه‌ها</small>
