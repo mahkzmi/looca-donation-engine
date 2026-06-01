@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ campaign.title }} | لوکا</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .progress-bar { background: #eee; border-radius: 10px; height: 20px; }
+        .progress-fill { background: green; height: 20px; border-radius: 10px; width: 0%; }
+        button { background: #ff6600; color: white; padding: 10px 20px; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>{{ campaign.title }}</h1>
+    <p><strong>پناهگاه:</strong> {{ campaign.shelter.name }}</p>
+    <p>{{ campaign.description }}</p>
+    
+    <h3>هدف: {{ campaign.target_amount }} تومان</h3>
+    <h3>جمع‌آوری شده: {{ campaign.collected_amount }} تومان</h3>
+    
+    <div class="progress-bar">
+        <div class="progress-fill" style="width: {{ campaign.progress_percent }}%;"></div>
+    </div>
+    <p>پیشرفت: {{ campaign.progress_percent }}%</p>
+    
+    <button onclick="alert('درگاه پرداخت به زودی اضافه می‌شود')">اهدا کن</button>
+    
+    <hr>
+    <small>ساخته شده با عشق برای لوکا | همیشه رایگان برای پناهگاه‌ها</small>
+</body>
+</html>
