@@ -118,3 +118,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = "static/"
+
+# NOWPayments Crypto Gateway Settings
+NOWPAYMENTS_API_KEY = "YOUR_API_KEY_HERE"  # کلیدی که از NOWPayments گرفتی
+NOWPAYMENTS_SANDBOX = True  # برای تست (بعداً False کن)
+NOWPAYMENTS_IPN_SECRET = "your_ipn_secret_here"  # اختیاری، برای امنیت بیشتر

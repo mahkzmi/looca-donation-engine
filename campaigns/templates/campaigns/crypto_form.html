@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پرداخت کریپتو | لوکا</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(15, 52, 96, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .subtitle {
+            color: #ddd;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: white;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            transform: scale(1.02);
+            background: white;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: linear-gradient(135deg, #ffd700, #ff9800);
+            color: #0f3460;
+            padding: 14px;
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,215,0,0.3);
+        }
+
+        .btn-back {
+            display: block;
+            text-align: center;
+            color: #ffd700;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .btn-back:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            margin: 25px 0 20px;
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .footer {
+            text-align: center;
+            color: rgba(255,255,255,0.5);
+            font-size: 11px;
+        }
+
+        .note {
+            background: rgba(255,215,0,0.2);
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            color: #ffd700;
+            font-size: 12px;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 25px;
+            }
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>
+            <span>💎</span>
+            پرداخت با کریپتو
+            <span>🪙</span>
+        </h1>
+        <div class="subtitle">
+            کمک به {{ campaign.title }}
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label>💰 مبلغ (تومان)</label>
+                <input type="number" name="amount" min="10000" step="10000" required 
+                       placeholder="مثال: ۱۰۰,۰۰۰">
+                <small style="color: #aaa; display: block; margin-top: 5px;">حداقل ۱۰,۰۰۰ تومان</small>
+            </div>
+
+            <div class="form-group">
+                <label>👤 نام شما (اختیاری)</label>
+                <input type="text" name="donor_name" placeholder="نام یا ناشناس">
+            </div>
+
+            <div class="form-group">
+                <label>📧 ایمیل (اختیاری)</label>
+                <input type="email" name="donor_email" placeholder="برای دریافت رسید">
+            </div>
+
+            <div class="form-group">
+                <label>🪙 ارز دیجیتال</label>
+                <select name="currency">
+                    <option value="USDT" selected>💵 USDT (TRC20/ERC20)</option>
+                    <option value="BTC">₿ Bitcoin (BTC)</option>
+                    <option value="ETH">Ξ Ethereum (ETH)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-primary">
+                ✨ تولید فاکتور پرداخت
+            </button>
+        </form>
+
+        <div class="note">
+            💡 پس از تولید فاکتور، آدرس کیف پول و QR Code نمایش داده می‌شود
+        </div>
+
+        <hr>
+
+        <a href="{% url 'campaigns:detail' campaign.id %}" class="btn-back">
+            ← بازگشت به صفحه کمپین
+        </a>
+
+        <div class="footer">
+            <p style="margin-top: 20px;">🐾 ساخته شده با عشق برای لوکا | همیشه رایگان</p>
+        </div>
+    </div>
+</body>
+</html>
