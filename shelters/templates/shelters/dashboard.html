@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد {{ shelter.name }} | لوکا</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .stat-number { font-size: 32px; font-weight: bold; color: #667eea; }
+        .stat-label { color: #666; margin-top: 8px; }
+        .campaigns-table {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: right; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #2c3e50; }
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .btn-logout { background: #e74c3c; }
+        .progress { width: 100px; height: 6px; background: #eee; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: #4caf50; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1>🏠 {{ shelter.name }}</h1>
+                <p style="color: #666; margin-top: 5px;">خوش آمدید</p>
+            </div>
+            <a href="{% url 'shelters:logout' %}" class="btn btn-logout">🚪 خروج</a>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">{{ total_campaigns }}</div>
+                <div class="stat-label">کمپین فعال</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ total_donations }}</div>
+                <div class="stat-label">تعداد اهداها</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ total_amount|default:0 }} تومان</div>
+                <div class="stat-label">جمع اهدایی</div>
+            </div>
+        </div>
+        
+        <div class="campaigns-table">
+            <h2 style="margin-bottom: 20px;">📢 کمپین‌های من</h2>
+            <table>
+                <thead>
+                    <tr><th>عنوان</th><th>هدف</th><th>جمع‌آوری شده</th><th>پیشرفت</th><th>تراکنش‌ها</th></tr>
+                </thead>
+                <tbody>
+                    {% for campaign in campaigns %}
+                    <tr>
+                        <td>{{ campaign.title }}</td>
+                        <td>{{ campaign.target_amount|default:0 }} تومان</td>
+                        <td>{{ campaign.collected_amount|default:0 }} تومان</td>
+                        <td>
+                            <div class="progress">
+                                <div class="progress-fill" style="width: {{ campaign.progress_percent }}%;"></div>
+                            </div>
+                            {{ campaign.progress_percent }}%
+                        </td>
+                        <td><a href="{% url 'shelters:transactions' campaign.id %}" class="btn">مشاهده</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" style="text-align: center;">هیچ کمپینی وجود ندارد</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

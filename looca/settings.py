@@ -119,7 +119,8 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-# NOWPayments Crypto Gateway Settings
-NOWPAYMENTS_API_KEY = "YOUR_API_KEY_HERE"  # کلیدی که از NOWPayments گرفتی
-NOWPAYMENTS_SANDBOX = True  # برای تست (بعداً False کن)
-NOWPAYMENTS_IPN_SECRET = "your_ipn_secret_here"  # اختیاری، برای امنیت بیشتر
+
+
+# Telegram Bot Settings
+TELEGRAM_BOT_TOKEN ="8268620466:AAHoUXsJ5db64PdauJOYnYZjd-cH5NO7Cak"
+TELEGRAM_ADMIN_CHAT_ID = "7893489361"  # Chat ID تو

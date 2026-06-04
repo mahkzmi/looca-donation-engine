@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تراکنش‌های {{ campaign.title }} | لوکا</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 2px solid #eee; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px; text-align: right; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #2c3e50; }
+        .btn-back {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .amount { color: #4caf50; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'shelters:dashboard' %}" class="btn-back">← بازگشت به داشبورد</a>
+        
+        <div class="card">
+            <div class="header">
+                <h1>💰 تراکنش‌های کمپین</h1>
+                <h2 style="margin-top: 10px; color: #666;">{{ campaign.title }}</h2>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr><th>کد پیگیری</th><th>مبلغ</th><th>اهداکننده</th><th>تاریخ</th><th>نوع</th></tr>
+                </thead>
+                <tbody>
+                    {% for tx in transactions %}
+                    <tr>
+                        <td>{{ tx.tracking_code }}</td>
+                        <td class="amount">{{ tx.amount }} تومان</td>
+                        <td>{{ tx.donor_name|default:'ناشناس' }}</td>
+                        <td>{{ tx.created_at|date:"Y/m/d H:i" }}</td>
+                        <td>{% if tx.crypto_currency %}کریپتو{% else %}نقدی{% endif %}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="5" style="text-align: center;">هیچ تراکنش موفقی وجود ندارد</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
